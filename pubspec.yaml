@@ -1,0 +1,36 @@
+name: belo
+description: A new Flutter project.
+version: 1.0.0+1
+publish_to: none
+
+environment:
+  sdk: ">=2.12.0-0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  convex_bottom_bar: ^3.0.0
+  dartz: ^0.10.0-nullsafety.1
+  flutter_riverpod: ^0.14.0+3
+  flutter_screenutil: ^5.0.0
+  freezed_annotation: ^0.14.1
+  http: ^0.13.2
+  json_annotation: ^4.0.1
+  lottie: ^1.0.1
+  riverpod: ^0.14.0+3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  bloc_test: ^8.0.0
+  build_runner: ^1.12.2
+  freezed: ^0.14.1+2
+  json_serializable: ^4.1.1
+  mocktail: ^0.1.0
+  very_good_analysis: ^2.0.0
+
+flutter:
+  uses-material-design: true
+  generate: true
+  assets:
+    - assets/
