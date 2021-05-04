@@ -145,10 +145,16 @@ class _ExchangeCoin extends StatelessWidget {
         children: [
           InkWell(
             onTap: () {
+              final state = context.read(coinConvertNotifierProvider);
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => const PortafolioPage()));
+                      builder: (context) => PortafolioPage(
+                            selected: state.from!,
+                            coins: state.portafolio!,
+                            isPortafolio: true,
+                            oppositeCoin: state.to!,
+                          )));
             },
             child: Row(
               children: [
@@ -189,16 +195,33 @@ class _ExchangeCoin extends StatelessWidget {
               child: Container(),
             ),
           ),
-          _CoinColum(
-            aligment: CrossAxisAlignment.end,
-            title: 'A',
-            subtitle: to.symbol,
-          ),
-          SizedBox(
-            width: 30.w,
-          ),
-          ImageCoin(
-            imageUrl: to.image,
+          InkWell(
+            onTap: () {
+              final state = context.read(coinConvertNotifierProvider);
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => PortafolioPage(
+                          isPortafolio: false,
+                          selected: state.to!,
+                          oppositeCoin: state.from!,
+                          coins: state.all!)));
+            },
+            child: Row(
+              children: [
+                _CoinColum(
+                  aligment: CrossAxisAlignment.end,
+                  title: 'A',
+                  subtitle: to.symbol,
+                ),
+                SizedBox(
+                  width: 30.w,
+                ),
+                ImageCoin(
+                  imageUrl: to.image,
+                ),
+              ],
+            ),
           ),
         ],
       ),

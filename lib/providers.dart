@@ -18,7 +18,7 @@ final coinNotifierProvider =
 
 // Inicializao mi notifier del convertidor de coins
 final coinConvertNotifierProvider =
-    StateNotifierProvider<CoinConvertNotifier, CoinConvertState>(
+    StateNotifierProvider.autoDispose<CoinConvertNotifier, CoinConvertState>(
   (ref) => CoinConvertNotifier(ref.watch(coinRepositoryProvider), ref.read)
     ..initialize(),
 );

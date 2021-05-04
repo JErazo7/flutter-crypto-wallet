@@ -10,15 +10,18 @@ class CoinItem extends StatelessWidget {
       {Key? key,
       required Coin coin,
       isPortafolio = false,
-      required double height})
+      required double height,
+      VoidCallback? onTap})
       : _coin = coin,
         _height = height,
+        _onTap = onTap,
         _isPortafolio = isPortafolio,
         super(key: key);
 
   final Coin _coin;
   final bool _isPortafolio;
   final double _height;
+  final VoidCallback? _onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +34,7 @@ class CoinItem extends StatelessWidget {
         color: Colors.grey.shade200,
       ))),
       child: ListTile(
+        onTap: _onTap,
         leading: ImageCoin(
           imageUrl: _coin.image,
         ),
