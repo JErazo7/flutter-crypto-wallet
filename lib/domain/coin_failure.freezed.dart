@@ -19,6 +19,10 @@ class _$CoinFailureTearOff {
   Unexpected unexpected() {
     return Unexpected();
   }
+
+  TimeLimitExceeded timeLimitExceeded() {
+    return TimeLimitExceeded();
+  }
 }
 
 /// @nodoc
@@ -29,22 +33,26 @@ mixin _$CoinFailure {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() unexpected,
+    required TResult Function() timeLimitExceeded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unexpected,
+    TResult Function()? timeLimitExceeded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Unexpected value) unexpected,
+    required TResult Function(TimeLimitExceeded value) timeLimitExceeded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Unexpected value)? unexpected,
+    TResult Function(TimeLimitExceeded value)? timeLimitExceeded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -104,6 +112,7 @@ class _$Unexpected implements Unexpected {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() unexpected,
+    required TResult Function() timeLimitExceeded,
   }) {
     return unexpected();
   }
@@ -112,6 +121,7 @@ class _$Unexpected implements Unexpected {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unexpected,
+    TResult Function()? timeLimitExceeded,
     required TResult orElse(),
   }) {
     if (unexpected != null) {
@@ -124,6 +134,7 @@ class _$Unexpected implements Unexpected {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Unexpected value) unexpected,
+    required TResult Function(TimeLimitExceeded value) timeLimitExceeded,
   }) {
     return unexpected(this);
   }
@@ -132,6 +143,7 @@ class _$Unexpected implements Unexpected {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Unexpected value)? unexpected,
+    TResult Function(TimeLimitExceeded value)? timeLimitExceeded,
     required TResult orElse(),
   }) {
     if (unexpected != null) {
@@ -143,4 +155,89 @@ class _$Unexpected implements Unexpected {
 
 abstract class Unexpected implements CoinFailure {
   factory Unexpected() = _$Unexpected;
+}
+
+/// @nodoc
+abstract class $TimeLimitExceededCopyWith<$Res> {
+  factory $TimeLimitExceededCopyWith(
+          TimeLimitExceeded value, $Res Function(TimeLimitExceeded) then) =
+      _$TimeLimitExceededCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$TimeLimitExceededCopyWithImpl<$Res>
+    extends _$CoinFailureCopyWithImpl<$Res>
+    implements $TimeLimitExceededCopyWith<$Res> {
+  _$TimeLimitExceededCopyWithImpl(
+      TimeLimitExceeded _value, $Res Function(TimeLimitExceeded) _then)
+      : super(_value, (v) => _then(v as TimeLimitExceeded));
+
+  @override
+  TimeLimitExceeded get _value => super._value as TimeLimitExceeded;
+}
+
+/// @nodoc
+class _$TimeLimitExceeded implements TimeLimitExceeded {
+  _$TimeLimitExceeded();
+
+  @override
+  String toString() {
+    return 'CoinFailure.timeLimitExceeded()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is TimeLimitExceeded);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() unexpected,
+    required TResult Function() timeLimitExceeded,
+  }) {
+    return timeLimitExceeded();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? timeLimitExceeded,
+    required TResult orElse(),
+  }) {
+    if (timeLimitExceeded != null) {
+      return timeLimitExceeded();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Unexpected value) unexpected,
+    required TResult Function(TimeLimitExceeded value) timeLimitExceeded,
+  }) {
+    return timeLimitExceeded(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Unexpected value)? unexpected,
+    TResult Function(TimeLimitExceeded value)? timeLimitExceeded,
+    required TResult orElse(),
+  }) {
+    if (timeLimitExceeded != null) {
+      return timeLimitExceeded(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class TimeLimitExceeded implements CoinFailure {
+  factory TimeLimitExceeded() = _$TimeLimitExceeded;
 }

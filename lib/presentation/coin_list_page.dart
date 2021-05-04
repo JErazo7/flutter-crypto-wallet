@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../providers.dart';
+import 'widgets/critical_failure.dart';
 
 class CoinListPage extends StatelessWidget {
   const CoinListPage({Key? key}) : super(key: key);
@@ -23,7 +24,11 @@ class CoinListPage extends StatelessWidget {
                 loading: (_) =>
                     const Center(child: CircularProgressIndicator()),
                 loaded: (e) => SuccesContent(coins: e.coins),
-                failure: (e) => const _CriticalFailure());
+                failure: (e) => CriticalFailure(
+                      onRetry: () {
+                        context.read(coinNotifierProvider.notifier).getCoins();
+                      },
+                    ));
           }),
         ));
   }
@@ -50,48 +55,11 @@ class SuccesContent extends StatelessWidget {
         SliverList(
             delegate: SliverChildBuilderDelegate((context, index) {
           return CoinItem(
+            height: 120.h,
             coin: _coins[index],
           );
         }, childCount: _coins.length))
       ],
-    );
-  }
-}
-
-class _CriticalFailure extends StatelessWidget {
-  const _CriticalFailure({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Icon(
-            Icons.announcement,
-            size: 100.h,
-          ),
-          SizedBox(
-            height: 20.h,
-          ),
-          SizedBox(
-            width: 400.w,
-            child: Text(
-              '¡Ups!, ha ocurrido un error inesperado',
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 36.sp),
-            ),
-          ),
-          SizedBox(
-            height: 10.h,
-          ),
-          TextButton(
-              onPressed: () {
-                context.read(coinNotifierProvider.notifier).getCoins();
-              },
-              child: Text('Reintentar', style: TextStyle(fontSize: 36.sp)))
-        ],
-      ),
     );
   }
 }

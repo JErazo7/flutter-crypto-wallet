@@ -23,8 +23,8 @@ class _$CoinTearOff {
       required String image,
       required double currentPrice,
       required double priceChange,
-      double? amount,
-      double? dollars}) {
+      double? amount = 0.0,
+      double? dollars = 0.0}) {
     return _Coin(
       id: id,
       name: name,
@@ -209,8 +209,8 @@ class _$_Coin implements _Coin {
       required this.image,
       required this.currentPrice,
       required this.priceChange,
-      this.amount,
-      this.dollars});
+      this.amount = 0.0,
+      this.dollars = 0.0});
 
   @override
   final String id;
@@ -224,8 +224,10 @@ class _$_Coin implements _Coin {
   final double currentPrice;
   @override
   final double priceChange;
+  @JsonKey(defaultValue: 0.0)
   @override
   final double? amount;
+  @JsonKey(defaultValue: 0.0)
   @override
   final double? dollars;
 

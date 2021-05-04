@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:belo/domain/coin.dart';
 import 'package:belo/domain/coin_failure.dart';
 import 'package:belo/domain/i_coin_repository.dart';
@@ -18,5 +20,14 @@ class CoinRepository implements ICoinRepository {
     } catch (e) {
       return left(CoinFailure.unexpected());
     }
+  }
+
+  @override
+  Future<Either<CoinFailure, Unit>> updatePortafolio(Coin to, Coin from) async {
+    await Future.delayed(const Duration(seconds: 2));
+    if (Random().nextBool()) {
+      return left(CoinFailure.timeLimitExceeded());
+    }
+    return right(unit);
   }
 }

@@ -24,8 +24,9 @@ class _HomePageState extends State<HomePage> {
         initialActiveIndex: _pos,
         items: [
           const TabItem(icon: Icon(Icons.home_filled)),
-          const TabItem(icon: Icon(Icons.sync_alt)),
-          const TabItem(icon: Icon(Icons.equalizer))
+          const TabItem(
+            icon: Icon(Icons.equalizer),
+          )
         ],
         onTap: (index) {
           setState(() {

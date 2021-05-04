@@ -31,20 +31,23 @@ class CoinListNotifier extends StateNotifier<CoinListState> {
     });
   }
 
-  Future<void> change(Coin coin) async {
-    final coins = (state as Loaded).coins;
+  void coinsChanged(List<Coin> coins) async {
+    final actualCoins = (state as Loaded).coins;
     var total = (state as Loaded).totalDollars;
 
-    var index = coins.indexWhere((item) => coin.symbol == item.symbol);
-    if (index != -1) {
-      if (coins[index].amount == 0) {
-        total += coin.dollars!;
-      } else {
-        total -= coins[index].dollars!;
+    // Actualizo los valores actuales de la lista
+    for (var coin in coins) {
+      var index = actualCoins.indexWhere((item) => coin.symbol == item.symbol);
+      if (index != -1) {
+        if (actualCoins[index].amount == 0) {
+          total += coin.dollars!;
+        } else {
+          total -= actualCoins[index].dollars!;
+          total += coin.dollars!;
+        }
+        coins[index] = coin;
       }
-      coins[index] = coin;
     }
-
     state = Loaded(coins, total);
   }
 }
