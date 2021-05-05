@@ -125,16 +125,14 @@ class __SuccessContentState extends State<_SuccessContent> {
               FadeInUp(
                 child: InkWell(
                   onTap: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const ConvertPage()));
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => ConvertPage()));
                   },
                   child: PhysicalModel(
                     shadowColor: Colors.white,
                     elevation: 4,
                     color: const Color(0XFFF01FFB2),
-                    borderRadius: BorderRadius.circular(12),
+                    borderRadius: BorderRadius.circular(25),
                     child: Container(
                       alignment: Alignment.center,
                       height: 70.h,

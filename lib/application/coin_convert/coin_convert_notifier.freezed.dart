@@ -13,6 +13,233 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
+class _$ValidationErrorTearOff {
+  const _$ValidationErrorTearOff();
+
+  Empty empty() {
+    return const Empty();
+  }
+
+  Invalid invalid() {
+    return const Invalid();
+  }
+}
+
+/// @nodoc
+const $ValidationError = _$ValidationErrorTearOff();
+
+/// @nodoc
+mixin _$ValidationError {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() empty,
+    required TResult Function() invalid,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? empty,
+    TResult Function()? invalid,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Empty value) empty,
+    required TResult Function(Invalid value) invalid,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Empty value)? empty,
+    TResult Function(Invalid value)? invalid,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ValidationErrorCopyWith<$Res> {
+  factory $ValidationErrorCopyWith(
+          ValidationError value, $Res Function(ValidationError) then) =
+      _$ValidationErrorCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$ValidationErrorCopyWithImpl<$Res>
+    implements $ValidationErrorCopyWith<$Res> {
+  _$ValidationErrorCopyWithImpl(this._value, this._then);
+
+  final ValidationError _value;
+  // ignore: unused_field
+  final $Res Function(ValidationError) _then;
+}
+
+/// @nodoc
+abstract class $EmptyCopyWith<$Res> {
+  factory $EmptyCopyWith(Empty value, $Res Function(Empty) then) =
+      _$EmptyCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$EmptyCopyWithImpl<$Res> extends _$ValidationErrorCopyWithImpl<$Res>
+    implements $EmptyCopyWith<$Res> {
+  _$EmptyCopyWithImpl(Empty _value, $Res Function(Empty) _then)
+      : super(_value, (v) => _then(v as Empty));
+
+  @override
+  Empty get _value => super._value as Empty;
+}
+
+/// @nodoc
+class _$Empty implements Empty {
+  const _$Empty();
+
+  @override
+  String toString() {
+    return 'ValidationError.empty()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is Empty);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() empty,
+    required TResult Function() invalid,
+  }) {
+    return empty();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? empty,
+    TResult Function()? invalid,
+    required TResult orElse(),
+  }) {
+    if (empty != null) {
+      return empty();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Empty value) empty,
+    required TResult Function(Invalid value) invalid,
+  }) {
+    return empty(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Empty value)? empty,
+    TResult Function(Invalid value)? invalid,
+    required TResult orElse(),
+  }) {
+    if (empty != null) {
+      return empty(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class Empty implements ValidationError {
+  const factory Empty() = _$Empty;
+}
+
+/// @nodoc
+abstract class $InvalidCopyWith<$Res> {
+  factory $InvalidCopyWith(Invalid value, $Res Function(Invalid) then) =
+      _$InvalidCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$InvalidCopyWithImpl<$Res> extends _$ValidationErrorCopyWithImpl<$Res>
+    implements $InvalidCopyWith<$Res> {
+  _$InvalidCopyWithImpl(Invalid _value, $Res Function(Invalid) _then)
+      : super(_value, (v) => _then(v as Invalid));
+
+  @override
+  Invalid get _value => super._value as Invalid;
+}
+
+/// @nodoc
+class _$Invalid implements Invalid {
+  const _$Invalid();
+
+  @override
+  String toString() {
+    return 'ValidationError.invalid()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) || (other is Invalid);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() empty,
+    required TResult Function() invalid,
+  }) {
+    return invalid();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? empty,
+    TResult Function()? invalid,
+    required TResult orElse(),
+  }) {
+    if (invalid != null) {
+      return invalid();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Empty value) empty,
+    required TResult Function(Invalid value) invalid,
+  }) {
+    return invalid(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Empty value)? empty,
+    TResult Function(Invalid value)? invalid,
+    required TResult orElse(),
+  }) {
+    if (invalid != null) {
+      return invalid(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class Invalid implements ValidationError {
+  const factory Invalid() = _$Invalid;
+}
+
+/// @nodoc
 class _$CoinConvertStateTearOff {
   const _$CoinConvertStateTearOff();
 
@@ -24,7 +251,7 @@ class _$CoinConvertStateTearOff {
       required String amount,
       required bool isLoading,
       required bool isPreview,
-      required bool showErrorMessages,
+      required Option<ValidationError> validation,
       required Option<Either<CoinFailure, Unit>>
           convertFailureOrSuccessOption}) {
     return _CoinConvertState(
@@ -35,7 +262,7 @@ class _$CoinConvertStateTearOff {
       amount: amount,
       isLoading: isLoading,
       isPreview: isPreview,
-      showErrorMessages: showErrorMessages,
+      validation: validation,
       convertFailureOrSuccessOption: convertFailureOrSuccessOption,
     );
   }
@@ -53,7 +280,7 @@ mixin _$CoinConvertState {
   String get amount => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
   bool get isPreview => throw _privateConstructorUsedError;
-  bool get showErrorMessages => throw _privateConstructorUsedError;
+  Option<ValidationError> get validation => throw _privateConstructorUsedError;
   Option<Either<CoinFailure, Unit>> get convertFailureOrSuccessOption =>
       throw _privateConstructorUsedError;
 
@@ -75,7 +302,7 @@ abstract class $CoinConvertStateCopyWith<$Res> {
       String amount,
       bool isLoading,
       bool isPreview,
-      bool showErrorMessages,
+      Option<ValidationError> validation,
       Option<Either<CoinFailure, Unit>> convertFailureOrSuccessOption});
 
   $CoinCopyWith<$Res>? get from;
@@ -100,7 +327,7 @@ class _$CoinConvertStateCopyWithImpl<$Res>
     Object? amount = freezed,
     Object? isLoading = freezed,
     Object? isPreview = freezed,
-    Object? showErrorMessages = freezed,
+    Object? validation = freezed,
     Object? convertFailureOrSuccessOption = freezed,
   }) {
     return _then(_value.copyWith(
@@ -132,10 +359,10 @@ class _$CoinConvertStateCopyWithImpl<$Res>
           ? _value.isPreview
           : isPreview // ignore: cast_nullable_to_non_nullable
               as bool,
-      showErrorMessages: showErrorMessages == freezed
-          ? _value.showErrorMessages
-          : showErrorMessages // ignore: cast_nullable_to_non_nullable
-              as bool,
+      validation: validation == freezed
+          ? _value.validation
+          : validation // ignore: cast_nullable_to_non_nullable
+              as Option<ValidationError>,
       convertFailureOrSuccessOption: convertFailureOrSuccessOption == freezed
           ? _value.convertFailureOrSuccessOption
           : convertFailureOrSuccessOption // ignore: cast_nullable_to_non_nullable
@@ -181,7 +408,7 @@ abstract class _$CoinConvertStateCopyWith<$Res>
       String amount,
       bool isLoading,
       bool isPreview,
-      bool showErrorMessages,
+      Option<ValidationError> validation,
       Option<Either<CoinFailure, Unit>> convertFailureOrSuccessOption});
 
   @override
@@ -210,7 +437,7 @@ class __$CoinConvertStateCopyWithImpl<$Res>
     Object? amount = freezed,
     Object? isLoading = freezed,
     Object? isPreview = freezed,
-    Object? showErrorMessages = freezed,
+    Object? validation = freezed,
     Object? convertFailureOrSuccessOption = freezed,
   }) {
     return _then(_CoinConvertState(
@@ -242,10 +469,10 @@ class __$CoinConvertStateCopyWithImpl<$Res>
           ? _value.isPreview
           : isPreview // ignore: cast_nullable_to_non_nullable
               as bool,
-      showErrorMessages: showErrorMessages == freezed
-          ? _value.showErrorMessages
-          : showErrorMessages // ignore: cast_nullable_to_non_nullable
-              as bool,
+      validation: validation == freezed
+          ? _value.validation
+          : validation // ignore: cast_nullable_to_non_nullable
+              as Option<ValidationError>,
       convertFailureOrSuccessOption: convertFailureOrSuccessOption == freezed
           ? _value.convertFailureOrSuccessOption
           : convertFailureOrSuccessOption // ignore: cast_nullable_to_non_nullable
@@ -264,7 +491,7 @@ class _$_CoinConvertState implements _CoinConvertState {
       required this.amount,
       required this.isLoading,
       required this.isPreview,
-      required this.showErrorMessages,
+      required this.validation,
       required this.convertFailureOrSuccessOption});
 
   @override
@@ -282,13 +509,13 @@ class _$_CoinConvertState implements _CoinConvertState {
   @override
   final bool isPreview;
   @override
-  final bool showErrorMessages;
+  final Option<ValidationError> validation;
   @override
   final Option<Either<CoinFailure, Unit>> convertFailureOrSuccessOption;
 
   @override
   String toString() {
-    return 'CoinConvertState(from: $from, to: $to, all: $all, portafolio: $portafolio, amount: $amount, isLoading: $isLoading, isPreview: $isPreview, showErrorMessages: $showErrorMessages, convertFailureOrSuccessOption: $convertFailureOrSuccessOption)';
+    return 'CoinConvertState(from: $from, to: $to, all: $all, portafolio: $portafolio, amount: $amount, isLoading: $isLoading, isPreview: $isPreview, validation: $validation, convertFailureOrSuccessOption: $convertFailureOrSuccessOption)';
   }
 
   @override
@@ -312,9 +539,9 @@ class _$_CoinConvertState implements _CoinConvertState {
             (identical(other.isPreview, isPreview) ||
                 const DeepCollectionEquality()
                     .equals(other.isPreview, isPreview)) &&
-            (identical(other.showErrorMessages, showErrorMessages) ||
+            (identical(other.validation, validation) ||
                 const DeepCollectionEquality()
-                    .equals(other.showErrorMessages, showErrorMessages)) &&
+                    .equals(other.validation, validation)) &&
             (identical(other.convertFailureOrSuccessOption,
                     convertFailureOrSuccessOption) ||
                 const DeepCollectionEquality().equals(
@@ -332,7 +559,7 @@ class _$_CoinConvertState implements _CoinConvertState {
       const DeepCollectionEquality().hash(amount) ^
       const DeepCollectionEquality().hash(isLoading) ^
       const DeepCollectionEquality().hash(isPreview) ^
-      const DeepCollectionEquality().hash(showErrorMessages) ^
+      const DeepCollectionEquality().hash(validation) ^
       const DeepCollectionEquality().hash(convertFailureOrSuccessOption);
 
   @JsonKey(ignore: true)
@@ -350,7 +577,7 @@ abstract class _CoinConvertState implements CoinConvertState {
       required String amount,
       required bool isLoading,
       required bool isPreview,
-      required bool showErrorMessages,
+      required Option<ValidationError> validation,
       required Option<Either<CoinFailure, Unit>>
           convertFailureOrSuccessOption}) = _$_CoinConvertState;
 
@@ -369,7 +596,7 @@ abstract class _CoinConvertState implements CoinConvertState {
   @override
   bool get isPreview => throw _privateConstructorUsedError;
   @override
-  bool get showErrorMessages => throw _privateConstructorUsedError;
+  Option<ValidationError> get validation => throw _privateConstructorUsedError;
   @override
   Option<Either<CoinFailure, Unit>> get convertFailureOrSuccessOption =>
       throw _privateConstructorUsedError;

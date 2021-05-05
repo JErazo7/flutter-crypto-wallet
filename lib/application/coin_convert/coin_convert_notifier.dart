@@ -35,11 +35,11 @@ class CoinConvertNotifier extends StateNotifier<CoinConvertState> {
   }
 
   Future<void> toChanged(Coin to) async {
-    state = state.copyWith(to: to, convertFailureOrSuccessOption: none());
+    state = state.copyWith(to: to, validation: none(), isPreview: false);
   }
 
   Future<void> fromChanged(Coin from) async {
-    state = state.copyWith(from: from, convertFailureOrSuccessOption: none());
+    state = state.copyWith(from: from, validation: none(), isPreview: false);
   }
 
   Future<void> validate() async {
@@ -49,11 +49,19 @@ class CoinConvertNotifier extends StateNotifier<CoinConvertState> {
 
     // Valido que la cantidad a convertir para saber si paso o no a la pantalla
     // de confirmacion
-    if (double.parse(state.amount) <= state.from!.dollars!) {
+    final amount = double.parse(state.amount);
+    ValidationError? validation;
+    if (amount > 0 && amount <= state.from!.dollars!) {
       isPreview = true;
+    } else if (amount == 0) {
+      validation = const ValidationError.empty();
+    } else {
+      validation = const ValidationError.invalid();
     }
     state = state.copyWith(
-        isLoading: false, isPreview: isPreview, showErrorMessages: true);
+        isLoading: false,
+        isPreview: isPreview,
+        validation: optionOf(validation));
   }
 
   Future<void> convert() async {
@@ -101,7 +109,10 @@ class CoinConvertNotifier extends StateNotifier<CoinConvertState> {
         value = valueString.substring(0, value.length - 1);
       }
     }
-    state = state.copyWith(amount: value.isEmpty ? '0' : value);
+    state = state.copyWith(
+        amount: value.isEmpty ? '0' : value,
+        validation: none(),
+        isPreview: false);
   }
 
   Future<void> onKeyboardTap(String value) async {
@@ -132,7 +143,14 @@ class CoinConvertNotifier extends StateNotifier<CoinConvertState> {
           valueString = valueString + value;
         }
       }
-      state = state.copyWith(amount: valueString);
+      state = state.copyWith(
+          amount: valueString, validation: none(), isPreview: false);
     }
   }
+}
+
+@freezed
+abstract class ValidationError with _$ValidationError {
+  const factory ValidationError.empty() = Empty;
+  const factory ValidationError.invalid() = Invalid;
 }

@@ -4,6 +4,6 @@ class Utils {
   }
 
   static String getPrice(double price) {
-    return '\$${(price).toStringAsFixed(1)}';
+    return '\$${(price).toStringAsFixed(3)}';
   }
 }

@@ -10,14 +10,15 @@ abstract class CoinConvertState with _$CoinConvertState {
     required String amount,
     required bool isLoading,
     required bool isPreview,
-    required bool showErrorMessages,
+    required Option<ValidationError> validation,
     required Option<Either<CoinFailure, Unit>> convertFailureOrSuccessOption,
   }) = _CoinConvertState;
 
   factory CoinConvertState.initial() => CoinConvertState(
-      isLoading: true,
-      amount: '0',
-      isPreview: false,
-      convertFailureOrSuccessOption: none(),
-      showErrorMessages: false);
+        isLoading: true,
+        amount: '0',
+        isPreview: false,
+        validation: none(),
+        convertFailureOrSuccessOption: none(),
+      );
 }
