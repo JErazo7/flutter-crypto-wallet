@@ -10,6 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   animate_do: ^2.0.0
+  auto_route: ^2.1.0
   convex_bottom_bar: ^3.0.0
   dartz: ^0.10.0-nullsafety.1
   flutter_riverpod: ^0.14.0+3
@@ -23,8 +24,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  bloc_test: ^8.0.0
-  build_runner: ^1.12.2
+  auto_route_generator: ^2.1.0
+  build_runner: ^2.0.2
   freezed: ^0.14.1+2
   json_serializable: ^4.1.1
   mocktail: ^0.1.0

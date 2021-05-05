@@ -6,10 +6,11 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+import '../../presentation/core/models/confirm_model.dart';
 import '../../providers.dart';
 
-part 'coin_convert_state.dart';
 part 'coin_convert_notifier.freezed.dart';
+part 'coin_convert_state.dart';
 
 class CoinConvertNotifier extends StateNotifier<CoinConvertState> {
   CoinConvertNotifier(this._coinRepository, this._read)
@@ -18,7 +19,7 @@ class CoinConvertNotifier extends StateNotifier<CoinConvertState> {
   final ICoinRepository _coinRepository;
   final Reader _read;
 
-  Future<void> initialize() async {
+  void initialize() {
     final coins = (_read(coinNotifierProvider) as Loaded).coins;
     final portafolio = coins
         .where((coin) => coin.amount! > 0)
@@ -30,29 +31,41 @@ class CoinConvertNotifier extends StateNotifier<CoinConvertState> {
           portafolio: portafolio.toList(),
           isLoading: false,
           from: portafolio.first,
-          to: coins.last);
+          to: portafolio.length > 1 ? portafolio[1] : coins.last);
     }
   }
 
-  Future<void> toChanged(Coin to) async {
+  void toChanged(Coin to) {
     state = state.copyWith(to: to, validation: none(), isPreview: false);
   }
 
-  Future<void> fromChanged(Coin from) async {
+  void fromChanged(Coin from) {
     state = state.copyWith(from: from, validation: none(), isPreview: false);
   }
 
-  Future<void> validate() async {
+  void validate() {
     state =
         state.copyWith(isLoading: true, convertFailureOrSuccessOption: none());
-    var isPreview = false;
+
+    final amount = double.parse(state.amount);
+    ValidationError? validation;
+    ConfirmModel? confirm;
 
     // Valido que la cantidad a convertir para saber si paso o no a la pantalla
     // de confirmacion
-    final amount = double.parse(state.amount);
-    ValidationError? validation;
     if (amount > 0 && amount <= state.from!.dollars!) {
-      isPreview = true;
+      final amount = double.parse(state.amount);
+
+      final coinTotal = amount / state.from!.currentPrice;
+      final conversion = amount / state.to!.currentPrice;
+      final rate = state.from!.currentPrice / state.to!.currentPrice;
+
+      confirm = ConfirmModel(
+        conversion: conversion,
+        dollarsTotal: amount,
+        rate: rate,
+        coinTotal: coinTotal,
+      );
     } else if (amount == 0) {
       validation = const ValidationError.empty();
     } else {
@@ -60,13 +73,17 @@ class CoinConvertNotifier extends StateNotifier<CoinConvertState> {
     }
     state = state.copyWith(
         isLoading: false,
-        isPreview: isPreview,
-        validation: optionOf(validation));
+        validation: optionOf(validation),
+        confirm: confirm,
+        isPreview: confirm != null);
   }
 
-  Future<void> convert() async {
-    state =
-        state.copyWith(isLoading: true, convertFailureOrSuccessOption: none());
+  Future<void> save() async {
+    state = state.copyWith(
+      isLoading: true,
+      isPreview: false,
+      convertFailureOrSuccessOption: none(),
+    );
 
     final amount = double.parse(state.amount);
 
@@ -83,7 +100,7 @@ class CoinConvertNotifier extends StateNotifier<CoinConvertState> {
     final newDollarsOfTo = state.to!.dollars! + amount;
     final newAmountOfTo = newDollarsOfTo / state.to!.currentPrice;
 
-    final updatedTo = state.from!.copyWith(
+    final updatedTo = state.to!.copyWith(
       amount: newAmountOfTo,
       dollars: newDollarsOfTo,
     );
@@ -101,7 +118,7 @@ class CoinConvertNotifier extends StateNotifier<CoinConvertState> {
         convertFailureOrSuccessOption: optionOf(failureOrSuccess));
   }
 
-  Future<void> onRemove() async {
+  void onKeyboardDelete() {
     var valueString = state.amount;
     var value = valueString.substring(0, valueString.length - 1);
     if (value.isNotEmpty) {
@@ -115,7 +132,7 @@ class CoinConvertNotifier extends StateNotifier<CoinConvertState> {
         isPreview: false);
   }
 
-  Future<void> onKeyboardTap(String value) async {
+  void onKeyboardTap(String value) {
     var valueString = state.amount;
     valueString = valueString == '0' ? '' : valueString;
     if (valueString.length < 8) {
@@ -150,7 +167,7 @@ class CoinConvertNotifier extends StateNotifier<CoinConvertState> {
 }
 
 @freezed
-abstract class ValidationError with _$ValidationError {
+class ValidationError with _$ValidationError {
   const factory ValidationError.empty() = Empty;
   const factory ValidationError.invalid() = Invalid;
 }

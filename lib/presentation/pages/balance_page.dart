@@ -1,16 +1,17 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:belo/application/coin_list/coin_list_notifier.dart';
-import 'package:belo/core/utils.dart';
 import 'package:belo/domain/coin.dart';
-import 'package:belo/presentation/convert_page.dart';
-import 'package:belo/presentation/widgets/coin_item.dart';
+import 'package:belo/presentation/core/widgets/coin_item.dart';
+import 'package:belo/presentation/core/widgets/critical_failure.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:lottie/lottie.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lottie/lottie.dart';
 
-import '../providers.dart';
-import 'widgets/critical_failure.dart';
+import '../../presentation/routes/router.gr.dart';
+import '../../providers.dart';
+import '../core/utils.dart';
 
 class BalancePage extends ConsumerWidget {
   const BalancePage({Key? key}) : super(key: key);
@@ -78,7 +79,7 @@ class __SuccessContentState extends State<_SuccessContent> {
         children: [
           Column(
             children: [
-              FadeInDown(
+              ElasticIn(
                 child: SizedBox(
                   height: 500.h,
                   child: Stack(
@@ -122,40 +123,37 @@ class __SuccessContentState extends State<_SuccessContent> {
                   ),
                 ),
               ),
-              FadeInUp(
-                child: InkWell(
-                  onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => ConvertPage()));
-                  },
-                  child: PhysicalModel(
-                    shadowColor: Colors.white,
-                    elevation: 4,
-                    color: const Color(0XFFF01FFB2),
-                    borderRadius: BorderRadius.circular(25),
-                    child: Container(
-                      alignment: Alignment.center,
-                      height: 70.h,
-                      width: 600.w,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.sync_alt,
-                            color: _color,
-                            size: 35.h,
-                          ),
-                          SizedBox(
-                            width: 10.w,
-                          ),
-                          Text('Convertir',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  color: const Color(0XFFF3A00FF),
-                                  fontSize: 32.sp,
-                                  fontWeight: FontWeight.bold)),
-                        ],
-                      ),
+              InkWell(
+                onTap: () {
+                  context.router.push(ConvertRoute());
+                },
+                child: PhysicalModel(
+                  shadowColor: Colors.white,
+                  elevation: 4,
+                  color: const Color(0XFFF01FFB2),
+                  borderRadius: BorderRadius.circular(25),
+                  child: Container(
+                    alignment: Alignment.center,
+                    height: 70.h,
+                    width: 600.w,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(
+                          Icons.sync_alt,
+                          color: _color,
+                          size: 35.h,
+                        ),
+                        SizedBox(
+                          width: 10.w,
+                        ),
+                        Text('Convertir',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                                color: const Color(0XFFF3A00FF),
+                                fontSize: 32.sp,
+                                fontWeight: FontWeight.bold)),
+                      ],
                     ),
                   ),
                 ),

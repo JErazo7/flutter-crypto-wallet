@@ -92,6 +92,7 @@ class _$EmptyCopyWithImpl<$Res> extends _$ValidationErrorCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$Empty implements Empty {
   const _$Empty();
 
@@ -174,6 +175,7 @@ class _$InvalidCopyWithImpl<$Res> extends _$ValidationErrorCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$Invalid implements Invalid {
   const _$Invalid();
 
@@ -248,6 +250,7 @@ class _$CoinConvertStateTearOff {
       Coin? to,
       List<Coin>? all,
       List<Coin>? portafolio,
+      ConfirmModel? confirm,
       required String amount,
       required bool isLoading,
       required bool isPreview,
@@ -259,6 +262,7 @@ class _$CoinConvertStateTearOff {
       to: to,
       all: all,
       portafolio: portafolio,
+      confirm: confirm,
       amount: amount,
       isLoading: isLoading,
       isPreview: isPreview,
@@ -277,6 +281,7 @@ mixin _$CoinConvertState {
   Coin? get to => throw _privateConstructorUsedError;
   List<Coin>? get all => throw _privateConstructorUsedError;
   List<Coin>? get portafolio => throw _privateConstructorUsedError;
+  ConfirmModel? get confirm => throw _privateConstructorUsedError;
   String get amount => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
   bool get isPreview => throw _privateConstructorUsedError;
@@ -299,6 +304,7 @@ abstract class $CoinConvertStateCopyWith<$Res> {
       Coin? to,
       List<Coin>? all,
       List<Coin>? portafolio,
+      ConfirmModel? confirm,
       String amount,
       bool isLoading,
       bool isPreview,
@@ -324,6 +330,7 @@ class _$CoinConvertStateCopyWithImpl<$Res>
     Object? to = freezed,
     Object? all = freezed,
     Object? portafolio = freezed,
+    Object? confirm = freezed,
     Object? amount = freezed,
     Object? isLoading = freezed,
     Object? isPreview = freezed,
@@ -347,6 +354,10 @@ class _$CoinConvertStateCopyWithImpl<$Res>
           ? _value.portafolio
           : portafolio // ignore: cast_nullable_to_non_nullable
               as List<Coin>?,
+      confirm: confirm == freezed
+          ? _value.confirm
+          : confirm // ignore: cast_nullable_to_non_nullable
+              as ConfirmModel?,
       amount: amount == freezed
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
@@ -405,6 +416,7 @@ abstract class _$CoinConvertStateCopyWith<$Res>
       Coin? to,
       List<Coin>? all,
       List<Coin>? portafolio,
+      ConfirmModel? confirm,
       String amount,
       bool isLoading,
       bool isPreview,
@@ -434,6 +446,7 @@ class __$CoinConvertStateCopyWithImpl<$Res>
     Object? to = freezed,
     Object? all = freezed,
     Object? portafolio = freezed,
+    Object? confirm = freezed,
     Object? amount = freezed,
     Object? isLoading = freezed,
     Object? isPreview = freezed,
@@ -457,6 +470,10 @@ class __$CoinConvertStateCopyWithImpl<$Res>
           ? _value.portafolio
           : portafolio // ignore: cast_nullable_to_non_nullable
               as List<Coin>?,
+      confirm: confirm == freezed
+          ? _value.confirm
+          : confirm // ignore: cast_nullable_to_non_nullable
+              as ConfirmModel?,
       amount: amount == freezed
           ? _value.amount
           : amount // ignore: cast_nullable_to_non_nullable
@@ -482,12 +499,14 @@ class __$CoinConvertStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_CoinConvertState implements _CoinConvertState {
   const _$_CoinConvertState(
       {this.from,
       this.to,
       this.all,
       this.portafolio,
+      this.confirm,
       required this.amount,
       required this.isLoading,
       required this.isPreview,
@@ -503,6 +522,8 @@ class _$_CoinConvertState implements _CoinConvertState {
   @override
   final List<Coin>? portafolio;
   @override
+  final ConfirmModel? confirm;
+  @override
   final String amount;
   @override
   final bool isLoading;
@@ -515,7 +536,7 @@ class _$_CoinConvertState implements _CoinConvertState {
 
   @override
   String toString() {
-    return 'CoinConvertState(from: $from, to: $to, all: $all, portafolio: $portafolio, amount: $amount, isLoading: $isLoading, isPreview: $isPreview, validation: $validation, convertFailureOrSuccessOption: $convertFailureOrSuccessOption)';
+    return 'CoinConvertState(from: $from, to: $to, all: $all, portafolio: $portafolio, confirm: $confirm, amount: $amount, isLoading: $isLoading, isPreview: $isPreview, validation: $validation, convertFailureOrSuccessOption: $convertFailureOrSuccessOption)';
   }
 
   @override
@@ -531,6 +552,9 @@ class _$_CoinConvertState implements _CoinConvertState {
             (identical(other.portafolio, portafolio) ||
                 const DeepCollectionEquality()
                     .equals(other.portafolio, portafolio)) &&
+            (identical(other.confirm, confirm) ||
+                const DeepCollectionEquality()
+                    .equals(other.confirm, confirm)) &&
             (identical(other.amount, amount) ||
                 const DeepCollectionEquality().equals(other.amount, amount)) &&
             (identical(other.isLoading, isLoading) ||
@@ -556,6 +580,7 @@ class _$_CoinConvertState implements _CoinConvertState {
       const DeepCollectionEquality().hash(to) ^
       const DeepCollectionEquality().hash(all) ^
       const DeepCollectionEquality().hash(portafolio) ^
+      const DeepCollectionEquality().hash(confirm) ^
       const DeepCollectionEquality().hash(amount) ^
       const DeepCollectionEquality().hash(isLoading) ^
       const DeepCollectionEquality().hash(isPreview) ^
@@ -574,6 +599,7 @@ abstract class _CoinConvertState implements CoinConvertState {
       Coin? to,
       List<Coin>? all,
       List<Coin>? portafolio,
+      ConfirmModel? confirm,
       required String amount,
       required bool isLoading,
       required bool isPreview,
@@ -589,6 +615,8 @@ abstract class _CoinConvertState implements CoinConvertState {
   List<Coin>? get all => throw _privateConstructorUsedError;
   @override
   List<Coin>? get portafolio => throw _privateConstructorUsedError;
+  @override
+  ConfirmModel? get confirm => throw _privateConstructorUsedError;
   @override
   String get amount => throw _privateConstructorUsedError;
   @override

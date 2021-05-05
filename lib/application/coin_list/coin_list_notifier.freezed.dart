@@ -113,6 +113,7 @@ class __$InitialCopyWithImpl<$Res> extends _$CoinListStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_Initial implements _Initial {
   const _$_Initial();
 
@@ -203,6 +204,7 @@ class _$LoadingCopyWithImpl<$Res> extends _$CoinListStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$Loading implements Loading {
   const _$Loading();
 
@@ -311,6 +313,7 @@ class _$LoadedCopyWithImpl<$Res> extends _$CoinListStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$Loaded implements Loaded {
   const _$Loaded(this.coins, this.totalDollars);
 
@@ -447,6 +450,7 @@ class _$FailureCopyWithImpl<$Res> extends _$CoinListStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$Failure implements Failure {
   const _$Failure(this.failure);
 

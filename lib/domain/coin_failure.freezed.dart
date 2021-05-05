@@ -92,6 +92,7 @@ class _$UnexpectedCopyWithImpl<$Res> extends _$CoinFailureCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$Unexpected implements Unexpected {
   _$Unexpected();
 
@@ -177,6 +178,7 @@ class _$TimeLimitExceededCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$TimeLimitExceeded implements TimeLimitExceeded {
   _$TimeLimitExceeded();
 

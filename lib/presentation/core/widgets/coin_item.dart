@@ -1,8 +1,8 @@
-import 'package:belo/core/utils.dart';
 import 'package:belo/domain/coin.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../utils.dart';
 import 'image_coin.dart';
 
 class CoinItem extends StatelessWidget {
@@ -63,7 +63,7 @@ class CoinItem extends StatelessWidget {
                   Text(Utils.getPrice(_coin.dollars!),
                       style: TextStyle(
                           fontSize: 28.sp, fontWeight: FontWeight.w500)),
-                  Text('${_coin.amount} ${_coin.symbol.toUpperCase()}',
+                  Text(Utils.getCoinAmount(_coin.amount!, _coin.symbol),
                       style: TextStyle(
                           fontSize: 28.sp,
                           fontWeight: FontWeight.w500,

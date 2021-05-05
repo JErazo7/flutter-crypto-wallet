@@ -45,10 +45,10 @@ class CoinListNotifier extends StateNotifier<CoinListState> {
           total -= actualCoins[index].dollars!;
           total += coin.dollars!;
         }
-        coins[index] = coin;
+        actualCoins[index] = coin;
       }
     }
-    state = Loaded(coins, total);
+    state = Loaded(actualCoins, total);
   }
 }
 

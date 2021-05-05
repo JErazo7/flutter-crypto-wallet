@@ -201,6 +201,7 @@ class __$CoinCopyWithImpl<$Res> extends _$CoinCopyWithImpl<$Res>
 }
 
 /// @nodoc
+
 class _$_Coin implements _Coin {
   _$_Coin(
       {required this.id,

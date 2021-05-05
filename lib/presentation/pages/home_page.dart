@@ -1,8 +1,8 @@
-import 'package:belo/presentation/coin_list_page.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 
 import 'balance_page.dart';
+import 'coin_list_page.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);

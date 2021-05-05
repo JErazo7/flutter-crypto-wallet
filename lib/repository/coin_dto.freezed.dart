@@ -183,9 +183,8 @@ class __$CoinDtoCopyWithImpl<$Res> extends _$CoinDtoCopyWithImpl<$Res>
   }
 }
 
-@JsonSerializable()
-
 /// @nodoc
+@JsonSerializable()
 class _$_CoinDto extends _CoinDto {
   _$_CoinDto(
       {required this.id,

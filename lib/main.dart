@@ -3,14 +3,16 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'presentation/home_page.dart';
+import 'presentation/routes/router.gr.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  MyApp({Key? key}) : super(key: key);
+
+  final _appRouter = AppRouter();
 
   @override
   Widget build(BuildContext context) {
@@ -18,8 +20,9 @@ class MyApp extends StatelessWidget {
       child: ScreenUtilInit(
           designSize: const Size(750, 1334),
           builder: () {
-            return MaterialApp(
-              home: HomePage(),
+            return MaterialApp.router(
+              routerDelegate: _appRouter.delegate(),
+              routeInformationParser: _appRouter.defaultRouteParser(),
             );
           }),
     );

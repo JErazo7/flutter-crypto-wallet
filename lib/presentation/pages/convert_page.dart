@@ -1,15 +1,17 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:belo/application/coin_convert/coin_convert_notifier.dart';
-import 'package:belo/core/utils.dart';
 import 'package:belo/domain/coin.dart';
-import 'package:belo/presentation/confirmation_page.dart';
-import 'package:belo/presentation/widgets/image_coin.dart';
-import 'package:belo/presentation/widgets/round_button.dart';
+import 'package:belo/presentation/core/utils.dart';
+import 'package:belo/presentation/core/widgets/image_coin.dart';
+import 'package:belo/presentation/core/widgets/round_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../providers.dart';
+import '../../presentation/routes/router.gr.dart';
+
+import '../../providers.dart';
 import 'portafolio_page.dart';
 
 class ConvertPage extends StatefulWidget {
@@ -30,10 +32,7 @@ class _ConvertPageState extends State<ConvertPage> {
         provider: coinConvertNotifierProvider,
         onChange: (context, state) {
           if (state.isPreview) {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const ConfirmationPage()));
+            context.router.push(const ConfirmationRoute());
           }
         },
         child: Consumer(builder: (context, watch, child) {
@@ -105,14 +104,19 @@ class _ConvertPageState extends State<ConvertPage> {
                         ),
                         Text(
                             state.validation.fold(
-                                () => '''
-Tienes ${state.from!.amount} ${state.from!.symbol.toUpperCase()} disponible.''',
-                                (validation) {
+                                () =>
+                                    // ignore: prefer_interpolation_to_compose_strings
+                                    'Tienes ' +
+                                    Utils.getCoinAmount(state.from!.amount!,
+                                        state.from!.symbol) +
+                                    ' disponible.', (validation) {
                               animateController.repeat();
                               return validation.map(
                                   empty: (_) => 'Ingrese una cantidad mayor',
-                                  invalid: (_) => '''
-No tienes suficientes ${state.from!.symbol.toUpperCase()}''');
+                                  invalid: (_) =>
+                                      // ignore: prefer_interpolation_to_compose_strings
+                                      'No tienes suficientes ' +
+                                      state.from!.symbol.toUpperCase());
                             }),
                             maxLines: 1,
                             textAlign: TextAlign.center,
@@ -361,7 +365,7 @@ class _Keyboard extends StatelessWidget {
                         onPressed: () {
                           context
                               .read(coinConvertNotifierProvider.notifier)
-                              .onRemove();
+                              .onKeyboardDelete();
                         })),
               ],
             ),

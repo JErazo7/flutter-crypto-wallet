@@ -1,11 +1,11 @@
 import 'package:belo/domain/coin.dart';
-import 'package:belo/presentation/widgets/coin_item.dart';
+import 'package:belo/presentation/core/widgets/coin_item.dart';
+import 'package:belo/presentation/core/widgets/critical_failure.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../providers.dart';
-import 'widgets/critical_failure.dart';
+import '../../providers.dart';
 
 class CoinListPage extends StatelessWidget {
   const CoinListPage({Key? key}) : super(key: key);
