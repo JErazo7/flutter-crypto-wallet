@@ -1,10 +1,9 @@
+import 'package:belo/application/coin_convert/coin_convert_provider.dart';
 import 'package:belo/domain/coin.dart';
 import 'package:belo/presentation/core/widgets/coin_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import '../../providers.dart';
 
 class PortafolioPage extends StatelessWidget {
   const PortafolioPage(
@@ -64,7 +63,6 @@ class PortafolioPage extends StatelessWidget {
                   Navigator.pop(context);
                 },
                 coin: coins[index],
-                height: isPortafolio ? 100.h : 120.h,
                 isPortafolio: isPortafolio,
               ),
             );

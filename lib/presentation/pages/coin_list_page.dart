@@ -1,11 +1,10 @@
+import 'package:belo/application/coin_list/coin_list_provider.dart';
 import 'package:belo/domain/coin.dart';
 import 'package:belo/presentation/core/widgets/coin_item.dart';
 import 'package:belo/presentation/core/widgets/critical_failure.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
-import '../../providers.dart';
 
 class CoinListPage extends StatelessWidget {
   const CoinListPage({Key? key}) : super(key: key);
@@ -55,7 +54,6 @@ class SuccesContent extends StatelessWidget {
         SliverList(
             delegate: SliverChildBuilderDelegate((context, index) {
           return CoinItem(
-            height: 120.h,
             coin: _coins[index],
           );
         }, childCount: _coins.length))

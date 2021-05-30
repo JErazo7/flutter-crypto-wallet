@@ -1,6 +1,7 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:belo/application/coin_convert/coin_convert_notifier.dart';
+import 'package:belo/application/coin_convert/coin_convert_provider.dart';
 import 'package:belo/domain/coin.dart';
 import 'package:belo/presentation/core/utils.dart';
 import 'package:belo/presentation/core/widgets/image_coin.dart';
@@ -11,7 +12,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../presentation/routes/router.gr.dart';
 
-import '../../providers.dart';
 import 'portafolio_page.dart';
 
 class ConvertPage extends StatefulWidget {
@@ -82,69 +82,72 @@ class _ConvertPageState extends State<ConvertPage> {
                   ),
                   backgroundColor: Colors.white,
                   body: Center(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        SizedBox(height: 110.h),
-                        BounceInLeft(
-                          from: 50,
-                          manualTrigger: true,
-                          controller: (controller) =>
-                              animateController = controller,
-                          child: Text('\$${state.amount}',
+                    child: ConstrainedBox(
+                      constraints: const BoxConstraints(maxWidth: 600),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          SizedBox(height: 110.h),
+                          BounceInLeft(
+                            from: 50,
+                            manualTrigger: true,
+                            controller: (controller) =>
+                                animateController = controller,
+                            child: Text('\$${state.amount}',
+                                maxLines: 1,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                    color: _color,
+                                    fontSize: 126.sp,
+                                    fontWeight: FontWeight.normal)),
+                          ),
+                          SizedBox(
+                            height: 15.h,
+                          ),
+                          Text(
+                              state.validation.fold(
+                                  () =>
+                                      // ignore: prefer_interpolation_to_compose_strings
+                                      'Tienes ' +
+                                      Utils.getCoinAmount(state.from!.amount!,
+                                          state.from!.symbol) +
+                                      ' disponible.', (validation) {
+                                animateController.repeat();
+                                return validation.map(
+                                    empty: (_) => 'Ingrese una cantidad mayor',
+                                    invalid: (_) =>
+                                        // ignore: prefer_interpolation_to_compose_strings
+                                        'No tienes suficientes ' +
+                                        state.from!.symbol.toUpperCase());
+                              }),
                               maxLines: 1,
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                  color: _color,
-                                  fontSize: 126.sp,
+                                  color: Colors.black54,
+                                  fontSize: 32.sp,
                                   fontWeight: FontWeight.normal)),
-                        ),
-                        SizedBox(
-                          height: 15.h,
-                        ),
-                        Text(
-                            state.validation.fold(
-                                () =>
-                                    // ignore: prefer_interpolation_to_compose_strings
-                                    'Tienes ' +
-                                    Utils.getCoinAmount(state.from!.amount!,
-                                        state.from!.symbol) +
-                                    ' disponible.', (validation) {
-                              animateController.repeat();
-                              return validation.map(
-                                  empty: (_) => 'Ingrese una cantidad mayor',
-                                  invalid: (_) =>
-                                      // ignore: prefer_interpolation_to_compose_strings
-                                      'No tienes suficientes ' +
-                                      state.from!.symbol.toUpperCase());
-                            }),
-                            maxLines: 1,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                color: Colors.black54,
-                                fontSize: 32.sp,
-                                fontWeight: FontWeight.normal)),
-                        SizedBox(height: 110.h),
-                        _ExchangeCoin(
-                          from: state.from!,
-                          to: state.to!,
-                        ),
-                        SizedBox(
-                          height: 70.h,
-                        ),
-                        const _Keyboard(),
-                        SizedBox(
-                          height: 60.h,
-                        ),
-                        RoundButton(
-                          text: 'Previsualizar Conversión',
-                          onTap: () {
-                            context
-                                .read(coinConvertNotifierProvider.notifier)
-                                .validate();
-                          },
-                        ),
-                      ],
+                          SizedBox(height: 110.h),
+                          _ExchangeCoin(
+                            from: state.from!,
+                            to: state.to!,
+                          ),
+                          SizedBox(
+                            height: 70.h,
+                          ),
+                          const _Keyboard(),
+                          SizedBox(
+                            height: 60.h,
+                          ),
+                          RoundButton(
+                            text: 'Previsualizar Conversión',
+                            onTap: () {
+                              context
+                                  .read(coinConvertNotifierProvider.notifier)
+                                  .validate();
+                            },
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 );
@@ -166,8 +169,10 @@ class _ExchangeCoin extends StatelessWidget {
           border: Border.all(color: Colors.grey.shade300, width: 2),
           borderRadius: BorderRadius.circular(20)),
       margin: EdgeInsets.symmetric(horizontal: 30.w),
-      padding: EdgeInsets.symmetric(vertical: 30.h, horizontal: 40.w),
+      padding: EdgeInsets.symmetric(vertical: 30.h, horizontal: 20.w),
       child: Row(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           InkWell(
             onTap: () {
@@ -267,30 +272,27 @@ class _CoinColum extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: 100.w,
-      child: Column(
-        crossAxisAlignment: aligment,
-        children: [
-          Text(title,
-              maxLines: 1,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  color: Colors.black54,
-                  fontSize: 28.sp,
-                  fontWeight: FontWeight.normal)),
-          SizedBox(
-            height: 5.h,
-          ),
-          Text(subtitle.toUpperCase(),
-              maxLines: 1,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 32.sp,
-                  fontWeight: FontWeight.normal)),
-        ],
-      ),
+    return Column(
+      crossAxisAlignment: aligment,
+      children: [
+        Text(title,
+            maxLines: 1,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                color: Colors.black54,
+                fontSize: 28.sp,
+                fontWeight: FontWeight.normal)),
+        SizedBox(
+          height: 5.h,
+        ),
+        Text(subtitle.toUpperCase(),
+            maxLines: 1,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+                color: Colors.black,
+                fontSize: 32.sp,
+                fontWeight: FontWeight.normal)),
+      ],
     );
   }
 }

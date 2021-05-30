@@ -5,8 +5,13 @@ import 'package:belo/domain/coin_failure.dart';
 import 'package:belo/domain/i_coin_repository.dart';
 import 'package:belo/repository/data_source/coingecko_api.dart';
 import 'package:dartz/dartz.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'coin_dto.dart';
+
+final coinRepositoryProvider = Provider<ICoinRepository>(
+  (ref) => CoinRepository(),
+);
 
 class CoinRepository implements ICoinRepository {
   @override

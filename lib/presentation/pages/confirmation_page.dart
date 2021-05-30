@@ -1,3 +1,4 @@
+import 'package:belo/application/coin_convert/coin_convert_provider.dart';
 import 'package:belo/presentation/core/widgets/round_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -6,7 +7,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:auto_route/auto_route.dart';
 
 import '../../presentation/routes/router.gr.dart';
-import '../../providers.dart';
 
 class ConfirmationPage extends StatelessWidget {
   const ConfirmationPage({Key? key}) : super(key: key);
@@ -39,65 +39,68 @@ class ConfirmationPage extends StatelessWidget {
           ),
           backgroundColor: Colors.white,
           body: Center(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: EdgeInsets.symmetric(vertical: 70.h),
-                  child: Text(
-                      // ignore: prefer_interpolation_to_compose_strings
-                      state.confirm!.conversion.toStringAsFixed(10) +
-                          ' ' +
-                          state.to!.symbol.toUpperCase(),
-                      maxLines: 1,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                          color: _color,
-                          fontSize: 56.sp,
-                          fontWeight: FontWeight.w500)),
-                ),
-                const Divider(
-                  thickness: 1.5,
-                ),
-                SizedBox(
-                  height: 15.h,
-                ),
-                _RowItem(title: 'Pagar con', subtitle: state.from!.name),
-                _RowItem(
-                    title: 'Tipo de cambio',
-                    // ignore: prefer_interpolation_to_compose_strings
-                    subtitle: '1 ' +
-                        state.from!.symbol.toUpperCase() +
-                        ' = ' +
-                        state.confirm!.rate.toStringAsFixed(10) +
-                        ' ' +
-                        state.to!.symbol.toUpperCase()),
-                const _RowItem(title: 'Tarifa de Belo', subtitle: '\$0.00'),
-                _RowItem(
-                    title: 'Total',
-                    // ignore: prefer_interpolation_to_compose_strings
-                    subtitle: state.confirm!.coinTotal.toStringAsFixed(10) +
-                        ' ' +
-                        state.from!.symbol.toUpperCase() +
-                        ' (\$' +
-                        state.amount +
-                        ')'),
-                Expanded(
-                  child: SizedBox(
-                    child: Container(),
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 600),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical: 70.h),
+                    child: Text(
+                        // ignore: prefer_interpolation_to_compose_strings
+                        state.confirm!.conversion.toStringAsFixed(10) +
+                            ' ' +
+                            state.to!.symbol.toUpperCase(),
+                        maxLines: 1,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: _color,
+                            fontSize: 56.sp,
+                            fontWeight: FontWeight.w500)),
                   ),
-                ),
-                RoundButton(
-                  text: 'Convertir ahora',
-                  onTap: () {
-                    context.read(coinConvertNotifierProvider.notifier).save();
-                    context.router.replace(const StatusRoute());
-                  },
-                ),
-                SizedBox(
-                  height: 20.h + (ScreenUtil().bottomBarHeight / 2),
-                )
-              ],
+                  const Divider(
+                    thickness: 1.5,
+                  ),
+                  SizedBox(
+                    height: 15.h,
+                  ),
+                  _RowItem(title: 'Pagar con', subtitle: state.from!.name),
+                  _RowItem(
+                      title: 'Tipo de cambio',
+                      // ignore: prefer_interpolation_to_compose_strings
+                      subtitle: '1 ' +
+                          state.from!.symbol.toUpperCase() +
+                          ' = ' +
+                          state.confirm!.rate.toStringAsFixed(10) +
+                          ' ' +
+                          state.to!.symbol.toUpperCase()),
+                  const _RowItem(title: 'Tarifa de Belo', subtitle: '\$0.00'),
+                  _RowItem(
+                      title: 'Total',
+                      // ignore: prefer_interpolation_to_compose_strings
+                      subtitle: state.confirm!.coinTotal.toStringAsFixed(10) +
+                          ' ' +
+                          state.from!.symbol.toUpperCase() +
+                          ' (\$' +
+                          state.amount +
+                          ')'),
+                  Expanded(
+                    child: SizedBox(
+                      child: Container(),
+                    ),
+                  ),
+                  RoundButton(
+                    text: 'Convertir ahora',
+                    onTap: () {
+                      context.read(coinConvertNotifierProvider.notifier).save();
+                      context.router.replace(const StatusRoute());
+                    },
+                  ),
+                  SizedBox(
+                    height: 20.h + (ScreenUtil().bottomBarHeight / 2),
+                  )
+                ],
+              ),
             ),
           ),
         );
@@ -120,8 +123,8 @@ class _RowItem extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
-            width: 250.w,
+          Padding(
+            padding: EdgeInsets.only(right: 20.w),
             child: Text(title,
                 maxLines: 1,
                 textAlign: TextAlign.left,

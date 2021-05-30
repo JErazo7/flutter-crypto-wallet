@@ -1,4 +1,5 @@
 import 'package:belo/application/coin_list/coin_list_notifier.dart';
+import 'package:belo/application/coin_list/coin_list_provider.dart';
 import 'package:belo/domain/coin.dart';
 import 'package:belo/domain/coin_failure.dart';
 import 'package:belo/domain/i_coin_repository.dart';
@@ -7,7 +8,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../presentation/core/models/confirm_model.dart';
-import '../../providers.dart';
 
 part 'coin_convert_notifier.freezed.dart';
 part 'coin_convert_state.dart';

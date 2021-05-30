@@ -7,27 +7,20 @@ import 'image_coin.dart';
 
 class CoinItem extends StatelessWidget {
   const CoinItem(
-      {Key? key,
-      required Coin coin,
-      isPortafolio = false,
-      required double height,
-      VoidCallback? onTap})
+      {Key? key, required Coin coin, isPortafolio = false, VoidCallback? onTap})
       : _coin = coin,
-        _height = height,
         _onTap = onTap,
         _isPortafolio = isPortafolio,
         super(key: key);
 
   final Coin _coin;
   final bool _isPortafolio;
-  final double _height;
   final VoidCallback? _onTap;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: _height,
-      padding: EdgeInsets.symmetric(horizontal: 10.w),
+      padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
       decoration: BoxDecoration(
           border: Border(
               bottom: BorderSide(
@@ -45,31 +38,34 @@ class CoinItem extends StatelessWidget {
         subtitle: !_isPortafolio
             ? Text(_coin.symbol, style: TextStyle(fontSize: 28.sp))
             : null,
-        trailing: !_isPortafolio
-            ? Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text('\$${_coin.currentPrice}',
-                      style: TextStyle(
-                          fontSize: 28.sp, fontWeight: FontWeight.w500)),
-                  _PriceVariation(price: _coin.priceChange),
-                ],
-              )
-            : Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(Utils.getPrice(_coin.dollars!),
-                      style: TextStyle(
-                          fontSize: 28.sp, fontWeight: FontWeight.w500)),
-                  Text(Utils.getCoinAmount(_coin.amount!, _coin.symbol),
-                      style: TextStyle(
-                          fontSize: 28.sp,
-                          fontWeight: FontWeight.w500,
-                          color: Colors.black54)),
-                ],
-              ),
+        trailing: FittedBox(
+          fit: BoxFit.scaleDown,
+          child: !_isPortafolio
+              ? Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text('\$${_coin.currentPrice}',
+                        style: TextStyle(
+                            fontSize: 28.sp, fontWeight: FontWeight.w500)),
+                    _PriceVariation(price: _coin.priceChange),
+                  ],
+                )
+              : Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(Utils.getPrice(_coin.dollars!),
+                        style: TextStyle(
+                            fontSize: 28.sp, fontWeight: FontWeight.w500)),
+                    Text(Utils.getCoinAmount(_coin.amount!, _coin.symbol),
+                        style: TextStyle(
+                            fontSize: 28.sp,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.black54)),
+                  ],
+                ),
+        ),
       ),
     );
   }

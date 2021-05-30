@@ -11,6 +11,7 @@ dependencies:
     sdk: flutter
   animate_do: ^2.0.0
   auto_route: ^2.1.0
+  collapsible_sidebar: ^2.0.0
   convex_bottom_bar: ^3.0.0
   dartz: ^0.10.0-nullsafety.1
   flutter_riverpod: ^0.14.0+3
@@ -19,6 +20,7 @@ dependencies:
   http: ^0.13.2
   json_annotation: ^4.0.1
   lottie: ^1.0.1
+  responsive_builder: ^0.4.1
   riverpod: ^0.14.0+3
 
 dev_dependencies:
