@@ -26,7 +26,9 @@ class BalancePage extends ConsumerWidget {
         },
         loading: (_) => const Center(child: CircularProgressIndicator()),
         loaded: (e) => _SuccessContent(loaded: e),
-        failure: (e) => CriticalFailure(onRetry: () {
+        failure: (e) => CriticalFailure(
+            color: Colors.white,
+            onRetry: () {
               context.read(coinNotifierProvider.notifier).getCoins();
             }));
   }

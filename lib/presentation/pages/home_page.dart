@@ -20,8 +20,9 @@ class _HomePageState extends State<HomePage> {
   var _pos = 0;
   @override
   Widget build(BuildContext context) {
-    var deviceType = getDeviceType(MediaQuery.of(context).size);
-    final isDesktop = deviceType == DeviceScreenType.desktop &&
+    final size = MediaQuery.of(context).size;
+    var deviceType = getDeviceType(size);
+    final isDesktop = (deviceType == DeviceScreenType.desktop) &&
         ScreenUtil().orientation == Orientation.landscape;
     return Scaffold(
       bottomNavigationBar: isDesktop

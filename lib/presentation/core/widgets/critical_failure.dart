@@ -3,11 +3,14 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CriticalFailure extends StatelessWidget {
-  const CriticalFailure({Key? key, VoidCallback? onRetry})
+  const CriticalFailure(
+      {Key? key, VoidCallback? onRetry, Color color = Colors.black})
       : _onRetry = onRetry,
+        _color = color,
         super(key: key);
 
   final VoidCallback? _onRetry;
+  final Color _color;
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +20,7 @@ class CriticalFailure extends StatelessWidget {
         children: [
           Icon(
             Icons.announcement,
+            color: _color,
             size: 100.h,
           ),
           SizedBox(
@@ -27,7 +31,7 @@ class CriticalFailure extends StatelessWidget {
             child: Text(
               '¡Ups!, ha ocurrido un error inesperado',
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 36.sp),
+              style: TextStyle(fontSize: 36.sp, color: _color),
             ),
           ),
           SizedBox(
