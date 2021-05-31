@@ -1,5 +1,5 @@
-import 'package:belo/application/coin_convert/coin_convert_provider.dart';
-import 'package:belo/presentation/core/widgets/round_button.dart';
+import 'package:flutter_crypto_wallet/application/coin_convert/coin_convert_provider.dart';
+import 'package:flutter_crypto_wallet/presentation/core/widgets/round_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

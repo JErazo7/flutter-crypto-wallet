@@ -1,7 +1,7 @@
-import 'package:belo/application/coin_list/coin_list_provider.dart';
-import 'package:belo/domain/coin.dart';
-import 'package:belo/presentation/core/widgets/coin_item.dart';
-import 'package:belo/presentation/core/widgets/critical_failure.dart';
+import 'package:flutter_crypto_wallet/application/coin_list/coin_list_provider.dart';
+import 'package:flutter_crypto_wallet/domain/coin.dart';
+import 'package:flutter_crypto_wallet/presentation/core/widgets/coin_item.dart';
+import 'package:flutter_crypto_wallet/presentation/core/widgets/critical_failure.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -46,6 +46,7 @@ class SuccesContent extends StatelessWidget {
         SliverAppBar(
           toolbarHeight: 140.h,
           backgroundColor: Colors.white,
+          centerTitle: true,
           title: Image.asset(
             'assets/belo.png',
             height: 150.h,

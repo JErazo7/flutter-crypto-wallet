@@ -1,4 +1,4 @@
-import 'package:belo/domain/coin.dart';
+import 'package:flutter_crypto_wallet/domain/coin.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

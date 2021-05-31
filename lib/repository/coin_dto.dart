@@ -1,4 +1,4 @@
-import 'package:belo/domain/coin.dart';
+import 'package:flutter_crypto_wallet/domain/coin.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'coin_dto.freezed.dart';

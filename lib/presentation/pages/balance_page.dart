@@ -1,11 +1,11 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:belo/application/coin_list/coin_list_notifier.dart';
-import 'package:belo/application/coin_list/coin_list_provider.dart';
-import 'package:belo/domain/coin.dart';
-import 'package:belo/presentation/core/widgets/coin_item.dart';
-import 'package:belo/presentation/core/widgets/critical_failure.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_crypto_wallet/application/coin_list/coin_list_notifier.dart';
+import 'package:flutter_crypto_wallet/application/coin_list/coin_list_provider.dart';
+import 'package:flutter_crypto_wallet/domain/coin.dart';
+import 'package:flutter_crypto_wallet/presentation/core/widgets/coin_item.dart';
+import 'package:flutter_crypto_wallet/presentation/core/widgets/critical_failure.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
@@ -57,6 +57,7 @@ class __SuccessContentState extends State<_SuccessContent> {
       appBar: AppBar(
           backgroundColor: _color,
           elevation: 0,
+          centerTitle: true,
           brightness: Brightness.dark,
           title: AnimatedCrossFade(
             crossFadeState: visibility
@@ -99,7 +100,6 @@ class __SuccessContentState extends State<_SuccessContent> {
                 NotificationListener<DraggableScrollableNotification>(
                     onNotification:
                         (DraggableScrollableNotification dsNotification) {
-                      print(dsNotification.extent);
                       if (visibility && dsNotification.extent >= 0.75) {
                         setState(() {
                           visibility = false;

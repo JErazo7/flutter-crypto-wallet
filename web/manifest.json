@@ -1,6 +1,6 @@
 {
-    "name": "Belo",
-    "short_name": "Belo",
+    "name": "flutter_crypto_wallet",
+    "short_name": "flutter_crypto_wallet",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

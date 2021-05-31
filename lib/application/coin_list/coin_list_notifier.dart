@@ -1,6 +1,6 @@
-import 'package:belo/domain/coin.dart';
-import 'package:belo/domain/coin_failure.dart';
-import 'package:belo/domain/i_coin_repository.dart';
+import 'package:flutter_crypto_wallet/domain/coin.dart';
+import 'package:flutter_crypto_wallet/domain/coin_failure.dart';
+import 'package:flutter_crypto_wallet/domain/i_coin_repository.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 

@@ -1,6 +1,6 @@
-import 'package:belo/application/coin_convert/coin_convert_provider.dart';
-import 'package:belo/domain/coin.dart';
-import 'package:belo/presentation/core/widgets/coin_item.dart';
+import 'package:flutter_crypto_wallet/application/coin_convert/coin_convert_provider.dart';
+import 'package:flutter_crypto_wallet/domain/coin.dart';
+import 'package:flutter_crypto_wallet/presentation/core/widgets/coin_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
