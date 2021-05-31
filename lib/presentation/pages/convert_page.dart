@@ -1,11 +1,11 @@
 import 'package:animate_do/animate_do.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:belo/application/coin_convert/coin_convert_notifier.dart';
-import 'package:belo/application/coin_convert/coin_convert_provider.dart';
-import 'package:belo/domain/coin.dart';
-import 'package:belo/presentation/core/utils.dart';
-import 'package:belo/presentation/core/widgets/image_coin.dart';
-import 'package:belo/presentation/core/widgets/round_button.dart';
+import 'package:flutter_crypto_wallet/application/coin_convert/coin_convert_notifier.dart';
+import 'package:flutter_crypto_wallet/application/coin_convert/coin_convert_provider.dart';
+import 'package:flutter_crypto_wallet/domain/coin.dart';
+import 'package:flutter_crypto_wallet/presentation/core/utils.dart';
+import 'package:flutter_crypto_wallet/presentation/core/widgets/image_coin.dart';
+import 'package:flutter_crypto_wallet/presentation/core/widgets/round_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,14 +15,14 @@ import '../../presentation/routes/router.gr.dart';
 import 'portafolio_page.dart';
 
 class ConvertPage extends StatefulWidget {
-  ConvertPage({Key? key}) : super(key: key);
+  const ConvertPage({Key? key}) : super(key: key);
 
   @override
   _ConvertPageState createState() => _ConvertPageState();
 }
 
 class _ConvertPageState extends State<ConvertPage> {
-  final _color = const Color(0XFFF3A00FF);
+  final _color = const Color(0xfff3a00ff);
 
   late AnimationController animateController;
 
@@ -50,6 +50,7 @@ class _ConvertPageState extends State<ConvertPage> {
                   appBar: AppBar(
                     backgroundColor: Colors.white,
                     elevation: 0,
+                    centerTitle: true,
                     automaticallyImplyLeading: true,
                     brightness: Brightness.light,
                     leading: IconButton(
@@ -190,7 +191,7 @@ class _ExchangeCoin extends StatelessWidget {
             child: Row(
               children: [
                 ImageCoin(
-                  imageUrl: from.image,
+                  imageUrl: from.id,
                 ),
                 SizedBox(
                   width: 30.w,
@@ -248,7 +249,7 @@ class _ExchangeCoin extends StatelessWidget {
                   width: 30.w,
                 ),
                 ImageCoin(
-                  imageUrl: to.image,
+                  imageUrl: to.id,
                 ),
               ],
             ),

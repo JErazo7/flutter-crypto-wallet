@@ -1,4 +1,4 @@
-import 'package:belo/domain/coin.dart';
+import 'package:flutter_crypto_wallet/domain/coin.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -29,7 +29,7 @@ class CoinItem extends StatelessWidget {
       child: ListTile(
         onTap: _onTap,
         leading: ImageCoin(
-          imageUrl: _coin.image,
+          imageUrl: _coin.id,
         ),
         title: Text(
           _coin.name,

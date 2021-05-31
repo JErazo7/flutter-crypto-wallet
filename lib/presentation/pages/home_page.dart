@@ -95,9 +95,9 @@ class _BottomNavigationBar extends StatelessWidget {
         color: Colors.white,
         backgroundColor: Colors.white,
         initialActiveIndex: initialPage,
-        items: [
-          const TabItem(icon: Icon(Icons.home_filled)),
-          const TabItem(
+        items: const [
+          TabItem(icon: Icon(Icons.home_filled)),
+          TabItem(
             icon: Icon(Icons.equalizer),
           )
         ],
