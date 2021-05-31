@@ -190,7 +190,7 @@ class _ExchangeCoin extends StatelessWidget {
             child: Row(
               children: [
                 ImageCoin(
-                  imageUrl: from.image,
+                  imageUrl: from.id,
                 ),
                 SizedBox(
                   width: 30.w,
@@ -248,7 +248,7 @@ class _ExchangeCoin extends StatelessWidget {
                   width: 30.w,
                 ),
                 ImageCoin(
-                  imageUrl: to.image,
+                  imageUrl: to.id,
                 ),
               ],
             ),

@@ -29,7 +29,7 @@ class CoinItem extends StatelessWidget {
       child: ListTile(
         onTap: _onTap,
         leading: ImageCoin(
-          imageUrl: _coin.image,
+          imageUrl: _coin.id,
         ),
         title: Text(
           _coin.name,

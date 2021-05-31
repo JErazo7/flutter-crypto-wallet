@@ -38,3 +38,5 @@ flutter:
   generate: true
   assets:
     - assets/
+    - assets/coins/
+
