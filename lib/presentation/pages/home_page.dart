@@ -63,11 +63,11 @@ class _HomePageState extends State<HomePage> {
                 child: widget._pages[_pos],
               ),
               avatarImg: const AssetImage('assets/profile.jpeg'),
-              backgroundColor: Colors.black,
-              iconSize: 55.h,
+              backgroundColor: Colors.white,
               title: 'Josue Erazo',
               selectedIconColor: const Color(0XFFF01FFB2),
               selectedTextColor: const Color(0XFFF01FFB2),
+              unselectedTextColor: Colors.black87,
               textStyle: TextStyle(fontSize: 26.sp),
               titleStyle: TextStyle(
                   fontSize: 36.sp,

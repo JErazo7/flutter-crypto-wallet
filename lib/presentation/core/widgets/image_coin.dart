@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 
 class ImageCoin extends StatelessWidget {
   const ImageCoin({Key? key, required String imageUrl})
@@ -20,7 +21,9 @@ class ImageCoin extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(5),
           child: Image.network(
-            _imageUrl,
+            kIsWeb
+                ? 'https://cors-anywhere.herokuapp.com/$_imageUrl'
+                : _imageUrl,
             fit: BoxFit.scaleDown,
           ),
         ),
