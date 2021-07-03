@@ -1,0 +1,9 @@
+version: "3.3"
+
+services:
+
+  crypto-wallet:
+    image: marcellodesales/crypto-wallet-web
+    build: .
+    ports:
+      - "4040:4040"
