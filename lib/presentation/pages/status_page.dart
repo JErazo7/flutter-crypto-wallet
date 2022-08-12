@@ -11,8 +11,8 @@ class StatusPage extends ConsumerWidget {
   const StatusPage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, ScopedReader watch) {
-    final state = watch(coinConvertNotifierProvider);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(coinConvertNotifierProvider);
 
     return Scaffold(
         body: Center(

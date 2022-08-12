@@ -18,8 +18,8 @@ class BalancePage extends ConsumerWidget {
   const BalancePage({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context, ScopedReader watch) {
-    final state = watch(coinNotifierProvider);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(coinNotifierProvider);
     return state.map(
         initial: (_) {
           return Container();
@@ -29,7 +29,7 @@ class BalancePage extends ConsumerWidget {
         failure: (e) => CriticalFailure(
             color: Colors.white,
             onRetry: () {
-              context.read(coinNotifierProvider.notifier).getCoins();
+              ref.read(coinNotifierProvider.notifier).getCoins();
             }));
   }
 }

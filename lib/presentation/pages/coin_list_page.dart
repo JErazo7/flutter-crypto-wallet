@@ -14,8 +14,8 @@ class CoinListPage extends StatelessWidget {
     return Scaffold(
         backgroundColor: Colors.white,
         body: SafeArea(
-          child: Consumer(builder: (context, watch, child) {
-            final state = watch(coinNotifierProvider);
+          child: Consumer(builder: (context, ref, child) {
+            final state = ref.watch(coinNotifierProvider);
             return state.map(
                 initial: (_) {
                   return Container();
@@ -25,7 +25,7 @@ class CoinListPage extends StatelessWidget {
                 loaded: (e) => SuccesContent(coins: e.coins),
                 failure: (e) => CriticalFailure(
                       onRetry: () {
-                        context.read(coinNotifierProvider.notifier).getCoins();
+                        ref.read(coinNotifierProvider.notifier).getCoins();
                       },
                     ));
           }),
