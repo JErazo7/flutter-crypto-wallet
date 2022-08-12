@@ -21,9 +21,8 @@ class CoinConvertNotifier extends StateNotifier<CoinConvertState> {
 
   void initialize() {
     final coins = (_read(coinNotifierProvider) as Loaded).coins;
-    final portafolio = coins
-        .where((coin) => coin.amount! > 0)
-        .sorted((a, b) => a.amount!.compareTo(b.amount!));
+    final portafolio = coins.where((coin) => coin.amount! > 0).toList()
+      ..sort((a, b) => a.amount!.compareTo(b.amount!));
 
     if (portafolio.isNotEmpty) {
       state = state.copyWith(

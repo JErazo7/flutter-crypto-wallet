@@ -5,25 +5,23 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:auto_route/auto_route.dart';
-
 import '../../presentation/routes/router.gr.dart';
 
-class ConfirmationPage extends StatelessWidget {
+class ConfirmationPage extends ConsumerWidget {
   const ConfirmationPage({Key? key}) : super(key: key);
   final _color = const Color(0XFFF3A00FF);
 
   @override
-  Widget build(BuildContext context) {
-    return Consumer(
-      builder: (context, watch, child) {
-        final state = watch(coinConvertNotifierProvider);
+  Widget build(BuildContext context, WidgetRef ref) {
+    return Builder(
+      builder: (_) {
+        final state = ref.watch(coinConvertNotifierProvider);
         return Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.white,
             elevation: 0,
             centerTitle: true,
             automaticallyImplyLeading: true,
-            brightness: Brightness.light,
             leading: IconButton(
               color: Colors.black,
               iconSize: 35.h,
@@ -93,7 +91,7 @@ class ConfirmationPage extends StatelessWidget {
                   RoundButton(
                     text: 'Convertir ahora',
                     onTap: () {
-                      context.read(coinConvertNotifierProvider.notifier).save();
+                      ref.read(coinConvertNotifierProvider.notifier).save();
                       context.router.replace(const StatusRoute());
                     },
                   ),

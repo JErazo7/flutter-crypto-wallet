@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
     return ProviderScope(
       child: ScreenUtilInit(
           designSize: const Size(750, 1334),
-          builder: () {
+          builder: (context, _) {
             return MaterialApp.router(
               routerDelegate: _appRouter.delegate(),
               routeInformationParser: _appRouter.defaultRouteParser(),

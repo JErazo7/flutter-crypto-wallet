@@ -7,33 +7,34 @@ publish_to: 'none' # Remove this line if you wish to publish to pub.dev
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
-  flutter: "2.2.0"
+  sdk: ">=2.12.0 <3.0.3"
+  flutter: "3.0.3"
 
 dependencies:
   flutter:
     sdk: flutter
   animate_do: ^2.0.0
-  auto_route: ^2.1.0
+  auto_route: ^4.2.1
   collapsible_sidebar: ^2.0.0
   convex_bottom_bar: ^3.0.0
   dartz: ^0.10.0-nullsafety.1
-  flutter_riverpod: ^0.14.0+3
-  flutter_screenutil: ^5.0.0
-  freezed_annotation: ^0.14.1
+  flutter_riverpod: ^1.0.4
+  flutter_screenutil: ^5.5.3+2
+  freezed_annotation: ^2.1.0
   http: ^0.13.2
   json_annotation: ^4.0.1
   lottie: ^1.0.1
   responsive_builder: ^0.4.1
-  riverpod: ^0.14.0+3
+  riverpod: ^1.0.3
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  auto_route_generator: ^2.1.0
+  auto_route_generator: 4.2.1
   build_runner: ^2.0.2
-  freezed: ^0.14.1+2
-  json_serializable: ^4.1.1
+  freezed: ^2.1.0+1
+  json_serializable: any
   mocktail: ^0.1.0
   very_good_analysis: ^2.0.0
 

@@ -14,156 +14,153 @@ import '../../presentation/routes/router.gr.dart';
 
 import 'portafolio_page.dart';
 
-class ConvertPage extends StatefulWidget {
+class ConvertPage extends ConsumerStatefulWidget {
   const ConvertPage({Key? key}) : super(key: key);
 
   @override
   _ConvertPageState createState() => _ConvertPageState();
 }
 
-class _ConvertPageState extends State<ConvertPage> {
+class _ConvertPageState extends ConsumerState<ConvertPage> {
   final _color = const Color(0xfff3a00ff);
 
   late AnimationController animateController;
 
   @override
   Widget build(BuildContext context) {
-    return ProviderListener<CoinConvertState>(
-        provider: coinConvertNotifierProvider,
-        onChange: (context, state) {
-          if (state.isPreview) {
-            context.router.push(const ConfirmationRoute());
-          }
-        },
-        child: Consumer(builder: (context, watch, child) {
-          final state = watch(coinConvertNotifierProvider);
-          final msg1 = '${Utils.getPrice(state.from!.dollars!)} disponible';
-          return state.isLoading
-              ? Scaffold(
-                  body: Center(
-                    child: Container(
-                        color: Colors.white,
-                        child: const CircularProgressIndicator()),
-                  ),
-                )
-              : Scaffold(
-                  appBar: AppBar(
-                    backgroundColor: Colors.white,
-                    elevation: 0,
-                    centerTitle: true,
-                    automaticallyImplyLeading: true,
-                    brightness: Brightness.light,
-                    leading: IconButton(
-                      color: Colors.black,
-                      iconSize: 45.h,
-                      icon: const Icon(Icons.close),
-                      onPressed: () => Navigator.pop(context),
+    return Consumer(builder: (context, ref, child) {
+      final state = ref.watch(coinConvertNotifierProvider);
+      final msg1 = '${Utils.getPrice(state.from!.dollars!)} disponible';
+
+      if (state.isPreview) {
+        context.router.push(const ConfirmationRoute());
+      }
+
+      return state.isLoading
+          ? Scaffold(
+              body: Center(
+                child: Container(
+                    color: Colors.white,
+                    child: const CircularProgressIndicator()),
+              ),
+            )
+          : Scaffold(
+              appBar: AppBar(
+                backgroundColor: Colors.white,
+                elevation: 0,
+                centerTitle: true,
+                automaticallyImplyLeading: true,
+                leading: IconButton(
+                  color: Colors.black,
+                  iconSize: 45.h,
+                  icon: const Icon(Icons.close),
+                  onPressed: () => Navigator.pop(context),
+                ),
+                title: Column(
+                  children: [
+                    Text('Convertir ${state.from!.name}',
+                        maxLines: 1,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 36.sp,
+                            fontWeight: FontWeight.bold)),
+                    SizedBox(
+                      height: 5.h,
                     ),
-                    title: Column(
-                      children: [
-                        Text('Convertir ${state.from!.name}',
+                    Text(msg1,
+                        maxLines: 1,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: Colors.black54,
+                            fontSize: 32.sp,
+                            fontWeight: FontWeight.normal)),
+                  ],
+                ),
+              ),
+              backgroundColor: Colors.white,
+              body: Center(
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 600),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      SizedBox(height: 110.h),
+                      BounceInLeft(
+                        from: 50,
+                        manualTrigger: true,
+                        controller: (controller) =>
+                            animateController = controller,
+                        child: Text('\$${state.amount}',
                             maxLines: 1,
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 36.sp,
-                                fontWeight: FontWeight.bold)),
-                        SizedBox(
-                          height: 5.h,
-                        ),
-                        Text(msg1,
-                            maxLines: 1,
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                                color: Colors.black54,
-                                fontSize: 32.sp,
+                                color: _color,
+                                fontSize: 126.sp,
                                 fontWeight: FontWeight.normal)),
-                      ],
-                    ),
-                  ),
-                  backgroundColor: Colors.white,
-                  body: Center(
-                    child: ConstrainedBox(
-                      constraints: const BoxConstraints(maxWidth: 600),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          SizedBox(height: 110.h),
-                          BounceInLeft(
-                            from: 50,
-                            manualTrigger: true,
-                            controller: (controller) =>
-                                animateController = controller,
-                            child: Text('\$${state.amount}',
-                                maxLines: 1,
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                    color: _color,
-                                    fontSize: 126.sp,
-                                    fontWeight: FontWeight.normal)),
-                          ),
-                          SizedBox(
-                            height: 15.h,
-                          ),
-                          Text(
-                              state.validation.fold(
-                                  () =>
-                                      // ignore: prefer_interpolation_to_compose_strings
-                                      'Tienes ' +
-                                      Utils.getCoinAmount(state.from!.amount!,
-                                          state.from!.symbol) +
-                                      ' disponible.', (validation) {
-                                animateController.repeat();
-                                return validation.map(
-                                    empty: (_) => 'Ingrese una cantidad mayor',
-                                    invalid: (_) =>
-                                        // ignore: prefer_interpolation_to_compose_strings
-                                        'No tienes suficientes ' +
-                                        state.from!.symbol.toUpperCase());
-                              }),
-                              maxLines: 1,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                  color: Colors.black54,
-                                  fontSize: 32.sp,
-                                  fontWeight: FontWeight.normal)),
-                          SizedBox(height: 110.h),
-                          _ExchangeCoin(
-                            from: state.from!,
-                            to: state.to!,
-                          ),
-                          SizedBox(
-                            height: 70.h,
-                          ),
-                          const _Keyboard(),
-                          SizedBox(
-                            height: 60.h,
-                          ),
-                          RoundButton(
-                            text: 'Previsualizar Conversión',
-                            onTap: () {
-                              context
-                                  .read(coinConvertNotifierProvider.notifier)
-                                  .validate();
-                            },
-                          ),
-                        ],
                       ),
-                    ),
+                      SizedBox(
+                        height: 15.h,
+                      ),
+                      Text(
+                          state.validation.fold(
+                              () =>
+                                  // ignore: prefer_interpolation_to_compose_strings
+                                  'Tienes ' +
+                                  Utils.getCoinAmount(
+                                      state.from!.amount!, state.from!.symbol) +
+                                  ' disponible.', (validation) {
+                            animateController.repeat();
+                            return validation.map(
+                                empty: (_) => 'Ingrese una cantidad mayor',
+                                invalid: (_) =>
+                                    // ignore: prefer_interpolation_to_compose_strings
+                                    'No tienes suficientes ' +
+                                    state.from!.symbol.toUpperCase());
+                          }),
+                          maxLines: 1,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              color: Colors.black54,
+                              fontSize: 32.sp,
+                              fontWeight: FontWeight.normal)),
+                      SizedBox(height: 110.h),
+                      _ExchangeCoin(
+                        from: state.from!,
+                        to: state.to!,
+                      ),
+                      SizedBox(
+                        height: 70.h,
+                      ),
+                      const _Keyboard(),
+                      SizedBox(
+                        height: 60.h,
+                      ),
+                      RoundButton(
+                        text: 'Previsualizar Conversión',
+                        onTap: () {
+                          ref
+                              .read(coinConvertNotifierProvider.notifier)
+                              .validate();
+                        },
+                      ),
+                    ],
                   ),
-                );
-        }));
+                ),
+              ),
+            );
+    });
   }
 }
 
-class _ExchangeCoin extends StatelessWidget {
+class _ExchangeCoin extends ConsumerWidget {
   const _ExchangeCoin({Key? key, required this.from, required this.to})
       : super(key: key);
 
   final Coin from, to;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Container(
       decoration: BoxDecoration(
           color: Colors.white,
@@ -177,7 +174,7 @@ class _ExchangeCoin extends StatelessWidget {
         children: [
           InkWell(
             onTap: () {
-              final state = context.read(coinConvertNotifierProvider);
+              final state = ref.read(coinConvertNotifierProvider);
               Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -228,7 +225,7 @@ class _ExchangeCoin extends StatelessWidget {
           ),
           InkWell(
             onTap: () {
-              final state = context.read(coinConvertNotifierProvider);
+              final state = ref.read(coinConvertNotifierProvider);
               Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -298,11 +295,11 @@ class _CoinColum extends StatelessWidget {
   }
 }
 
-class _Keyboard extends StatelessWidget {
+class _Keyboard extends ConsumerWidget {
   const _Keyboard({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return SizedBox(
       height: 400.h,
       child: Column(
@@ -331,7 +328,7 @@ class _Keyboard extends StatelessWidget {
                 Expanded(
                   child: InkWell(
                     onTap: () {
-                      context
+                      ref
                           .read(coinConvertNotifierProvider.notifier)
                           .onKeyboardTap('.');
                     },
@@ -346,7 +343,7 @@ class _Keyboard extends StatelessWidget {
                 Expanded(
                   child: InkWell(
                     onTap: () {
-                      context
+                      ref
                           .read(coinConvertNotifierProvider.notifier)
                           .onKeyboardTap('0');
                     },
@@ -366,7 +363,7 @@ class _Keyboard extends StatelessWidget {
                           color: Colors.black87,
                         ),
                         onPressed: () {
-                          context
+                          ref
                               .read(coinConvertNotifierProvider.notifier)
                               .onKeyboardDelete();
                         })),
@@ -379,20 +376,20 @@ class _Keyboard extends StatelessWidget {
   }
 }
 
-class _KeyboardRow extends StatelessWidget {
+class _KeyboardRow extends ConsumerWidget {
   const _KeyboardRow({Key? key, required this.start, required this.end})
       : super(key: key);
   final int start, end;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     return Row(
       children: [
         for (var i = start; i <= end; i++)
           Expanded(
             child: InkWell(
               onTap: () {
-                context
+                ref
                     .read(coinConvertNotifierProvider.notifier)
                     .onKeyboardTap(i.toString());
               },

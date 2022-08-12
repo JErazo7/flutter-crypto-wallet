@@ -1,5 +1,6 @@
+// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
 
 part of 'coin_failure.dart';
 
@@ -37,6 +38,12 @@ mixin _$CoinFailure {
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? timeLimitExceeded,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unexpected,
     TResult Function()? timeLimitExceeded,
@@ -47,6 +54,12 @@ mixin _$CoinFailure {
   TResult map<TResult extends Object?>({
     required TResult Function(Unexpected value) unexpected,
     required TResult Function(TimeLimitExceeded value) timeLimitExceeded,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Unexpected value)? unexpected,
+    TResult Function(TimeLimitExceeded value)? timeLimitExceeded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -120,6 +133,15 @@ class _$Unexpected implements Unexpected {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? timeLimitExceeded,
+  }) {
+    return unexpected?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unexpected,
     TResult Function()? timeLimitExceeded,
@@ -138,6 +160,15 @@ class _$Unexpected implements Unexpected {
     required TResult Function(TimeLimitExceeded value) timeLimitExceeded,
   }) {
     return unexpected(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Unexpected value)? unexpected,
+    TResult Function(TimeLimitExceeded value)? timeLimitExceeded,
+  }) {
+    return unexpected?.call(this);
   }
 
   @override
@@ -206,6 +237,15 @@ class _$TimeLimitExceeded implements TimeLimitExceeded {
 
   @override
   @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? unexpected,
+    TResult Function()? timeLimitExceeded,
+  }) {
+    return timeLimitExceeded?.call();
+  }
+
+  @override
+  @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? unexpected,
     TResult Function()? timeLimitExceeded,
@@ -224,6 +264,15 @@ class _$TimeLimitExceeded implements TimeLimitExceeded {
     required TResult Function(TimeLimitExceeded value) timeLimitExceeded,
   }) {
     return timeLimitExceeded(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Unexpected value)? unexpected,
+    TResult Function(TimeLimitExceeded value)? timeLimitExceeded,
+  }) {
+    return timeLimitExceeded?.call(this);
   }
 
   @override
